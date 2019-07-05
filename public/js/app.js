@@ -1844,16 +1844,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['user_id'],
+  props: ["user_id", "follows"],
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log("Component mounted.");
+  },
+  data: function data() {
+    return {
+      status: this.follows
+    };
   },
   methods: {
-    followUser: function followUser() {
-      axios.post('/follow/1').then(function (response) {
-        console.log(response);
+    followUser: function followUser(user_id) {
+      var _this = this;
+
+      axios.post("/follow/" + this.user_id).then(function (res) {
+        console.log(res);
+        _this.status = !_this.status;
+      })["catch"](function (err) {
+        console.log(err);
+        if (err.response.status == 401) window.location = "/login";
       });
+    }
+  },
+  computed: {
+    buttonText: function buttonText() {
+      return this.status ? "Unfollow" : "Follow";
     }
   }
 });
@@ -37155,6 +37176,7 @@ var render = function() {
       {
         staticClass: "btn btn-primary",
         staticStyle: { width: "5rem", height: "2rem", "padding-top": "2.5px" },
+        domProps: { textContent: _vm._s(_vm.buttonText) },
         on: { click: _vm.followUser }
       },
       [_vm._v("Follow")]
@@ -49487,8 +49509,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Sameer Siddiqui\Documents\Desktop\Apps\Projects\Laravel\Gram\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Sameer Siddiqui\Documents\Desktop\Apps\Projects\Laravel\Gram\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Projects\Laravel\Gram\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Projects\Laravel\Gram\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

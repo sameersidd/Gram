@@ -32,9 +32,16 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
+                    <form action="" method="get" id="search">
+                    <ul class="navbar-nav mr-auto ml-5" style="width:35rem">
+                        <li>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </div>
+                        </li>
+                        <li><div class="form-group">
+                            <button type="submit" class="btn btn-dark">Search</button></div></li>
+                    </ul></form>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

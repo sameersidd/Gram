@@ -1,0 +1,10 @@
+{
+    "liveServer.settings.port": 5501,
+    "sqltools.connections": [
+        {
+            "database": "D:\\Projects\\Laravel\\BookTrading\\database\\database.sqlite",
+            "dialect": "SQLite",
+            "name": "database"
+        }
+    ]
+}

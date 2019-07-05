@@ -12,7 +12,11 @@
             <div class="d-flex justify-content-between align-bottom">
                 <div class="d-flex justify-content-between">
                     <h2 class="pr-2">{{$user->profile->Name}}</h2>
-                    <follow-button user_id={{$user->id}}></follow-button>
+                    @auth
+                    @if ($user->id !== auth()->user()->id)
+                    <follow-button user_id={{$user->id}} follows={{$follows}}></follow-button>
+                    @endif
+                    @endauth
                 </div>
                 @can('update', $user->profile)
                     <a href="/p">Add New Post</a>
@@ -23,9 +27,9 @@
             @endcan
 
             <div class="d-flex">
-            <div class="p-2"><strong>{{$user->posts->count()}}</strong> posts</div>
-                <div class="p-2"><strong>234</strong> followers</div>
-                <div class="p-2"><strong>134</strong> likes</div>
+            <div class="p-2"><strong>{{$postCount}}</strong> posts</div>
+                <div class="p-2"><strong>{{$followersCount}}</strong> followers</div>
+                <div class="p-2"><strong>{{$followingCount}}</strong> following</div>
             </div>
             <div class="pt-4 font-weight-bold">
                 {{$user->profile->Name}}

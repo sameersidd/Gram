@@ -6,6 +6,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewUserMail;
 
 class User extends Authenticatable
 {
@@ -42,15 +44,15 @@ class User extends Authenticatable
     {
         parent::boot();
 
-        static::created(function ($user)
-        {
+        static::created(function ($user) {
             $user->profile()->create([
                 'Name' => $user->name,
                 'img' => 'profiles/no-photo.png'
             ]);
+
+            Mail::to($user->email)->send(new NewUserMail());
         });
     }
-
     public function profile()
     {
         return $this->hasOne(Profile::class);

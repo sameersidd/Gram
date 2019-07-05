@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,16 +18,13 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::get('/home', function ()
-{
-    return view('welcome');
-});
+
 
 //Profile Related Routes
 Route::get('/u/{user}', 'ProfilesController@view')->name('profile.show');
 Route::get('u/{id}/edit', 'ProfilesController@edit')->name('profile.edit');
 Route::put('u/{id}', 'ProfilesController@update')->name('profile.update');
-
+Route::get('/home', 'PostsController@index');
 //Post Related Routes. Authenticated Only
 Route::get('/p', 'PostsController@create')->middleware('auth');
 Route::get('/p/{post}', 'PostsController@view');
